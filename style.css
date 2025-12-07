@@ -1,0 +1,162 @@
+:root {
+    --primary-color: #009000;
+    --secondary-color: #f3f4f6;
+    --text-color: #1f2937;
+    --card-bg: #ffffff;
+    --folder-color: #fbbf24;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 4px solid white;
+    background-size: cover;
+    background-position: center;
+}
+
+h1 { margin: 0; font-size: 2rem; }
+.subtitle { opacity: 0.9; margin-top: 0.5rem; }
+.greeting { font-size: 0.9rem; background: rgba(255,255,255,0.2); display: inline-block; padding: 5px 15px; border-radius: 20px; margin-top: 10px; }
+
+/* --- Layout --- */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.section-title {
+    border-left: 5px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* --- แก้ไขส่วน Grid ให้เป็นแนวนอน --- */
+.grid {
+    display: flex;             /* เปลี่ยนจาก grid เป็น flex เพื่อเรียงแนวนอน */
+    overflow-x: auto;          /* อนุญาตให้เลื่อนแนวนอนได้ */
+    gap: 1.5rem;               /* ระยะห่างระหว่างการ์ด */
+    padding: 1rem 0.5rem;      /* เพิ่ม padding กันเงาการ์ดตกขอบ */
+    margin-bottom: 3rem;
+    
+    /* เพิ่มลูกเล่นการเลื่อนให้ดูดีขึ้น */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* ให้ลื่นไหลบนมือถือ */
+    scroll-snap-type: x mandatory;     /* เวลาเลื่อนแล้วปล่อย มันจะเด้งเข้าล็อคการ์ด */
+}
+
+/* --- ปรับแต่ง Scrollbar ให้สวยงาม (สำหรับ Chrome/Edge/Safari) --- */
+.grid::-webkit-scrollbar {
+    height: 8px; /* ความสูงของแถบเลื่อน */
+}
+
+.grid::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+
+.grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 10px;
+}
+
+.grid::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
+
+/* --- แก้ไขขนาดการ์ด Folder --- */
+.folder-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid #e5e7eb;
+    
+    /* -- ส่วนที่เพิ่มเข้ามาใหม่ -- */
+    min-width: 200px;        /* ฟิกซ์ความกว้างขั้นต่ำ เพื่อไม่ให้การ์ดบีบเล็กเกินไป */
+    flex-shrink: 0;          /* ห้ามไม่ให้การ์ดหดตัว */
+    scroll-snap-align: start; /* จุดที่ต้องการให้หยุดเวลาเลื่อน */
+}
+
+.folder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.folder-icon { font-size: 3rem; color: var(--folder-color); margin-bottom: 0.5rem; }
+.folder-name { font-weight: 600; font-size: 1.1rem; }
+.folder-info { font-size: 0.85rem; color: #6b7280; }
+
+/* --- Project Card --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.project-card:hover { transform: scale(1.02); }
+
+.project-img {
+    width: 100%;
+    height: 160px;
+    background-color: #ddd;
+    object-fit: cover;
+}
+
+.project-content { padding: 1rem; }
+.project-title { font-weight: 600; margin-bottom: 0.5rem; color: var(--primary-color); }
+.project-desc { font-size: 0.9rem; color: #4b5563; line-height: 1.5; }
+.tag {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-top: 0.8rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 3rem;
+}
